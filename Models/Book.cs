@@ -13,7 +13,8 @@ namespace Pricope_Delia_L2.Models
         public string Title { get; set; }
 
         //Definim autorul
-        public string Author { get; set; }
+        public int? AuthorID { get; set; }
+        public Author? Author { get; set; } //navigation property
 
         //Definim pretul
         [Column(TypeName = "decimal(6, 2)")]

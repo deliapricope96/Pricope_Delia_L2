@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pricope_Delia_L2.Data;
 
@@ -11,9 +12,11 @@ using Pricope_Delia_L2.Data;
 namespace Pricope_Delia_L2.Migrations
 {
     [DbContext(typeof(Pricope_Delia_L2Context))]
-    partial class Pricope_Delia_L2ContextModelSnapshot : ModelSnapshot
+    [Migration("20251104111155_AuthorName")]
+    partial class AuthorName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,15 +33,11 @@ namespace Pricope_Delia_L2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("AuthorID")
-                        .HasColumnType("int");
-
                     b.Property<string>("AuthorName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AuthorID");
 
                     b.ToTable("Author");
                 });
@@ -93,17 +92,10 @@ namespace Pricope_Delia_L2.Migrations
                     b.ToTable("Publisher");
                 });
 
-            modelBuilder.Entity("Pricope_Delia_L2.Models.Author", b =>
-                {
-                    b.HasOne("Pricope_Delia_L2.Models.Author", null)
-                        .WithMany("Authors")
-                        .HasForeignKey("AuthorID");
-                });
-
             modelBuilder.Entity("Pricope_Delia_L2.Models.Book", b =>
                 {
                     b.HasOne("Pricope_Delia_L2.Models.Author", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorID");
 
                     b.HasOne("Pricope_Delia_L2.Models.Publisher", "Publisher")
@@ -117,7 +109,7 @@ namespace Pricope_Delia_L2.Migrations
 
             modelBuilder.Entity("Pricope_Delia_L2.Models.Author", b =>
                 {
-                    b.Navigation("Authors");
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Pricope_Delia_L2.Models.Publisher", b =>

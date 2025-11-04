@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pricope_Delia_L2.Data;
 
@@ -11,9 +12,11 @@ using Pricope_Delia_L2.Data;
 namespace Pricope_Delia_L2.Migrations
 {
     [DbContext(typeof(Pricope_Delia_L2Context))]
-    partial class Pricope_Delia_L2ContextModelSnapshot : ModelSnapshot
+    [Migration("20251104111259_AuthorName2")]
+    partial class AuthorName2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,7 @@ namespace Pricope_Delia_L2.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AuthorName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
