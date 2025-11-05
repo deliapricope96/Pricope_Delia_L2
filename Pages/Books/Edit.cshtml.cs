@@ -36,7 +36,7 @@ namespace Pricope_Delia_L2.Pages.Books
                 return NotFound();
             }
             Book = book;
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID","AuthorName");
+            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "ID","LastName");
             ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID","PublisherName");
             return Page();
         }
