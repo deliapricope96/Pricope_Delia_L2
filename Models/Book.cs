@@ -21,6 +21,7 @@ namespace Pricope_Delia_L2.Models
         public decimal Price { get; set; }
 
         //Definim editura
+        [Display(Name = "Publishing Date")]
         [DataType(DataType.Date)]
         public DateTime PublishingDate { get; set; }
         public int? PublisherID { get; set; }
