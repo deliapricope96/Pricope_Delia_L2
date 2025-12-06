@@ -21,7 +21,7 @@ namespace Pricope_Delia_L2.Pages.Publishers
         }
 
         public IList<Publisher> Publisher { get;set; } = default!;
-
+        
         public PublisherIndexData PublisherData { get; set; }
         public int PublisherID { get; set; }
         public int BookID { get; set; }
