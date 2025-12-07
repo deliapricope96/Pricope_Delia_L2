@@ -1,12 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Pricope_Delia_L2.Data;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<Pricope_Delia_L2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Pricope_Delia_L2Context") ?? throw new InvalidOperationException("Connection string 'Pricope_Delia_L2Context' not found.")));
+builder.Services.AddDbContext<LibraryIdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Pricope_Delia_L2Context") ?? throw new InvalidOperationException("Connection string 'Pricope_Delia_L2Context' not found.")));
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+    options.SignIn.RequireConfirmedAccount = false)
+        .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();
 

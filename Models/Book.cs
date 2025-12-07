@@ -26,6 +26,7 @@ namespace Pricope_Delia_L2.Models
         public DateTime PublishingDate { get; set; }
         public int? PublisherID { get; set; }
         public Publisher? Publisher { get; set; }//navigation property
+        public ICollection<Borrowing>? Borrowings { get; set; }
 
         public ICollection<BookCategory>? BookCategories { get; set; }
     } 
